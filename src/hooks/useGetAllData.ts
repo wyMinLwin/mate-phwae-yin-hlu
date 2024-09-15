@@ -8,10 +8,10 @@ export const useGetAllData = () =>
 		queryFn: async () => {
 			try {
 				const ticketsResponse = await fetch(
-					"http://mate-phwae-yin-hlu.up.railway.app/api/tickets/"
+					"https://mate-phwae-yin-hlu.up.railway.app/api/tickets/"
 				);
 				const donationResponse = await fetch(
-					"http://mate-phwae-yin-hlu.up.railway.app/api/donate/"
+					"https://mate-phwae-yin-hlu.up.railway.app/api/donate/"
 				);
 				if (ticketsResponse.ok && donationResponse.ok) {
 					const tickets: Ticket[] = await ticketsResponse.json();

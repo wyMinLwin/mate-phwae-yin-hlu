@@ -1,15 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDonateOrBuy = (type: "tickets" | "donate") => {
-    const queryClient = useQueryClient();
+	const queryClient = useQueryClient();
 	return useMutation({
 		mutationKey: ["DonateOrBuy"],
 		mutationFn: async (data: FormData) => {
 			const response = await fetch(
-				`http://mate-phwae-yin-hlu.up.railway.app/api/${type}/`,
+				`https://mate-phwae-yin-hlu.up.railway.app/api/${type}/`,
 				{
 					method: "POST",
-                    
+
 					body: data,
 				}
 			);
@@ -20,10 +20,10 @@ export const useDonateOrBuy = (type: "tickets" | "donate") => {
 
 			return response.json();
 		},
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["MasterData"]
-            })
-        }
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ["MasterData"],
+			});
+		},
 	});
 };

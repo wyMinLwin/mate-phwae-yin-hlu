@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
 	try {
 		const response = await fetch(
-			"http://mate-phwae-yin-hlu.up.railway.app/api/payment-methods/"
+			"https://mate-phwae-yin-hlu.up.railway.app/api/payment-methods/"
 		);
 		const data = await response.json();
 		if (response.ok) {

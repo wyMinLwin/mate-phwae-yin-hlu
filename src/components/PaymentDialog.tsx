@@ -28,15 +28,14 @@ import PaymentMethods from "./PaymentMethods";
 import { useDonateOrBuy } from "@/hooks/useDonateOrBuy";
 import { useToast } from "@/hooks/use-toast";
 
-import {
-	AlertDialog,
-	AlertDialogContent,
-} from "./ui/alert-dialog";
+import { AlertDialog, AlertDialogContent } from "./ui/alert-dialog";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
 const donateFormSchema = z.object({
 	email: z.string({ required_error: "Email Required" }).email(),
-	phone: z.string({ required_error: "Phone Required" }).regex(/^\+\d{10,}$/, {message: "Enter a valid phone number"}),
+	phone: z
+		.string({ required_error: "Phone Required" })
+		.regex(/^\+?\d{10,}$/, { message: "Enter a valid phone number" }),
 	amount: z
 		.string({ required_error: "Amount Required" })
 		.regex(/^\d+$/, { message: "Amount must be a number" }),
@@ -50,7 +49,9 @@ const donateFormSchema = z.object({
 
 const buyTicketFormSchema = z.object({
 	email: z.string({ required_error: "Email Required" }).email(),
-	phone: z.string({ required_error: "Phone Required" }).regex(/^\+\d{10,}$/, {message: "Enter a valid phone number"}),
+	phone: z
+		.string({ required_error: "Phone Required" })
+		.regex(/^\+?\d{10,}$/, { message: "Enter a valid phone number" }),
 	ticket_type: z.string(),
 	screenshot: z.instanceof(File, { message: "Screenshot Required" }).refine(
 		(file) => {
@@ -219,6 +220,8 @@ const PaymentDialog = ({
 										name="screenshot"
 										render={({ field: { value, onChange, ...fieldProps } }) => (
 											<FormItem>
+												<span className="hidden">{JSON.stringify(value)}</span>
+
 												<FormLabel>Screenshot</FormLabel>
 												<FormControl>
 													<Input
@@ -304,6 +307,7 @@ const PaymentDialog = ({
 										name="screenshot"
 										render={({ field: { value, onChange, ...fieldProps } }) => (
 											<FormItem>
+												<span className="hidden">{JSON.stringify(value)}</span>
 												<FormLabel>Screenshot</FormLabel>
 												<FormControl>
 													<Input
@@ -356,9 +360,17 @@ const PaymentDialog = ({
 							? "Donation successful"
 							: ""}
 					</p>
-					<p className="text-center text-pretty">We will sent the certificate to your email!</p>
+					<p className="text-center text-pretty">
+						We will sent the certificate to your email!
+					</p>
 					<p className="text-center text-pretty">Thanks for your support!</p>
-					<Button className="w-[200px] tracking-wider" variant={"outline"} onClick={() => setIsSuccess(false)}>Confirm</Button>
+					<Button
+						className="w-[200px] tracking-wider"
+						variant={"outline"}
+						onClick={() => setIsSuccess(false)}
+					>
+						Confirm
+					</Button>
 				</AlertDialogContent>
 			</AlertDialog>
 		</>

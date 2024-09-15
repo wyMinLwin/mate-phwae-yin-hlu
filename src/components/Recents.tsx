@@ -18,7 +18,7 @@ const Recents = () => {
 		}, 3000); // Change slide every 3 seconds
 
 		return () => clearInterval(interval);
-	}, [data?.recents.length]);
+	}, [data]);
 
 	return (
 		<div>

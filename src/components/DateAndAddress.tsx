@@ -18,7 +18,7 @@ const DateAndAddress = () => {
 
 	return (
 		<div className="min-w-full h-fit">
-			<h3 className="text-center text-pretty text-xl mb-3">Date And Venue</h3>
+			<h3 className="text-center text-pretty text-xl mb-3">Date And Place</h3>
 			<div className="w-full grid grid-cols-1 sm:grid-cols-2">
 				<motion.div
 					initial="hidden"

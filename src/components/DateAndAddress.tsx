@@ -126,7 +126,7 @@ const DateAndAddress = () => {
 						</div>
 					</div>
 					<div className="w-3/5">
-						<h4 className="text-pretty text-lg font-medium">Venue</h4>
+						<h4 className="text-pretty text-lg font-medium">Place</h4>
 						<div className="flex flex-col items-start gap-1 ">
 							<h5>?</h5>
 						</div>

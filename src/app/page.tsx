@@ -1,6 +1,7 @@
 "use client";
 import DateAndAddress from "@/components/DateAndAddress";
 import TicketsContainer from "@/components/TicketsContainer";
+import {useScrollTo} from 'framer-motion-scroll-to-hook'
 
 import { formatAmount } from "@/lib/utils";
 import Recents from "@/components/Recents";
@@ -20,6 +21,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
 	const { data, isLoading } = useGetAllData();
+	const scrollTo = useScrollTo()
 
 	return (
 		<section className="w-full h-full p-3 flex flex-col items-center gap-5">
@@ -105,7 +107,7 @@ export default function Home() {
 							</div>
 						</PaymentDialog>
 
-						<DialogClose className="col-span-1">
+						<DialogClose className="col-span-1" onClick={() => scrollTo(document.querySelector('#tickets-container'))}>
 							<div className="cursor-pointer active:scale-95 hover:scale-105 transition duration-300 flex flex-col justify-center items-center border-2 border-dashed p-4 rounded-xl">
 								<Image
 									src={"/ticket.svg"}
@@ -117,7 +119,7 @@ export default function Home() {
 							</div>
 						</DialogClose>
 					</div>
-					<DialogClose className="w-fit mx-auto tracking-wider">
+					<DialogClose asChild className="w-fit mx-auto tracking-wider">
 						<Button variant="default" className="w-[180px]">
 							Later
 						</Button>

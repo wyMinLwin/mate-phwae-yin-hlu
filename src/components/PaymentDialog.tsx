@@ -64,9 +64,11 @@ const buyTicketFormSchema = z.object({
 const PaymentDialog = ({
 	children,
 	option,
+	type,
 }: {
 	children: React.ReactNode;
-	option: string;
+	option?: string;
+	type: "donate" | "tickets";
 }) => {
 	const hiddenBtnRef = useRef<HTMLButtonElement>(null!);
 	const [isSuccess, setIsSuccess] = React.useState(false);
@@ -163,7 +165,174 @@ const PaymentDialog = ({
 					<DialogHeader>
 						<DialogTitle className="text-pretty text-xl">Payment</DialogTitle>
 					</DialogHeader>
-					<Tabs defaultValue="buy_ticket" className="w-full">
+					<PaymentMethods />
+					{type === "donate" ? (
+						<Form {...donateForm}>
+							<form onSubmit={donateForm.handleSubmit(onDoate)}>
+								<FormField
+									control={donateForm.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Email</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter email..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={donateForm.control}
+									name="phone"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Phone</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter phone..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={donateForm.control}
+									name="amount"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Amount</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter amount..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={donateForm.control}
+									name="screenshot"
+									render={({ field: { value, onChange, ...fieldProps } }) => (
+										<FormItem>
+											<span className="hidden">{JSON.stringify(value)}</span>
+
+											<FormLabel>Screenshot</FormLabel>
+											<FormControl>
+												<Input
+													{...fieldProps}
+													placeholder="Select screenshot..."
+													type="file"
+													accept="image/jpg, image/png"
+													onChange={(event) =>
+														onChange(
+															event.target.files && event.target.files[0]
+														)
+													}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<div className="grid grid-cols-2 gap-2 mt-3">
+									<DialogClose className="col-span-1" asChild>
+										<Button
+											type="button"
+											className="w-full"
+											variant={"outline"}
+										>
+											Cancel
+										</Button>
+									</DialogClose>
+									<Button type="submit">Donate</Button>
+								</div>
+							</form>
+						</Form>
+					) : (
+						<Form {...buyTicketForm}>
+							<form onSubmit={buyTicketForm.handleSubmit(onBuyTicket)}>
+								<FormField
+									control={buyTicketForm.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Email</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter email..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={buyTicketForm.control}
+									name="phone"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Phone</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter phone..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={buyTicketForm.control}
+									name="ticket_type"
+									render={() => (
+										<FormItem>
+											<FormLabel>Ticket Type</FormLabel>
+											<FormControl>
+												<Input
+													readOnly
+													value={optionNameToRender}
+													placeholder="Enter amount..."
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={buyTicketForm.control}
+									name="screenshot"
+									render={({ field: { value, onChange, ...fieldProps } }) => (
+										<FormItem>
+											<span className="hidden">{JSON.stringify(value)}</span>
+											<FormLabel>Screenshot</FormLabel>
+											<FormControl>
+												<Input
+													{...fieldProps}
+													placeholder="Select screenshot..."
+													type="file"
+													accept="image/jpg, image/png"
+													onChange={(event) =>
+														onChange(
+															event.target.files && event.target.files[0]
+														)
+													}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<div className="grid grid-cols-2 gap-2 mt-3">
+									<DialogClose className="col-span-1" asChild>
+										<Button
+											type="button"
+											className="w-full"
+											variant={"outline"}
+										>
+											Cancel
+										</Button>
+									</DialogClose>
+									<Button type="submit">Buy</Button>
+								</div>
+							</form>
+						</Form>
+					)}
+					{/* <Tabs defaultValue="buy_ticket" className="w-full">
 						<TabsList className="w-full">
 							<TabsTrigger className="w-full" value="direct_donate">
 								Direct Donate
@@ -174,174 +343,13 @@ const PaymentDialog = ({
 						</TabsList>
 						<TabsContent value="direct_donate">
 							<PaymentMethods />
-							<Form {...donateForm}>
-								<form onSubmit={donateForm.handleSubmit(onDoate)}>
-									<FormField
-										control={donateForm.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Email</FormLabel>
-												<FormControl>
-													<Input placeholder="Enter email..." {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={donateForm.control}
-										name="phone"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Phone</FormLabel>
-												<FormControl>
-													<Input placeholder="Enter phone..." {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={donateForm.control}
-										name="amount"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Amount</FormLabel>
-												<FormControl>
-													<Input placeholder="Enter amount..." {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={donateForm.control}
-										name="screenshot"
-										render={({ field: { value, onChange, ...fieldProps } }) => (
-											<FormItem>
-												<span className="hidden">{JSON.stringify(value)}</span>
-
-												<FormLabel>Screenshot</FormLabel>
-												<FormControl>
-													<Input
-														{...fieldProps}
-														placeholder="Select screenshot..."
-														type="file"
-														accept="image/jpg, image/png"
-														onChange={(event) =>
-															onChange(
-																event.target.files && event.target.files[0]
-															)
-														}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<div className="grid grid-cols-2 gap-2 mt-3">
-										<DialogClose className="col-span-1" asChild>
-											<Button
-												type="button"
-												className="w-full"
-												variant={"outline"}
-											>
-												Cancel
-											</Button>
-										</DialogClose>
-										<Button type="submit">Donate</Button>
-									</div>
-								</form>
-							</Form>
+							
 						</TabsContent>
 						<TabsContent value="buy_ticket">
 							<PaymentMethods />
-							<Form {...buyTicketForm}>
-								<form onSubmit={buyTicketForm.handleSubmit(onBuyTicket)}>
-									<FormField
-										control={buyTicketForm.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Email</FormLabel>
-												<FormControl>
-													<Input placeholder="Enter email..." {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={buyTicketForm.control}
-										name="phone"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Phone</FormLabel>
-												<FormControl>
-													<Input placeholder="Enter phone..." {...field} />
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={buyTicketForm.control}
-										name="ticket_type"
-										render={() => (
-											<FormItem>
-												<FormLabel>Ticket Type</FormLabel>
-												<FormControl>
-													<Input
-														readOnly
-														value={optionNameToRender}
-														placeholder="Enter amount..."
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={buyTicketForm.control}
-										name="screenshot"
-										render={({ field: { value, onChange, ...fieldProps } }) => (
-											<FormItem>
-												<span className="hidden">{JSON.stringify(value)}</span>
-												<FormLabel>Screenshot</FormLabel>
-												<FormControl>
-													<Input
-														{...fieldProps}
-														placeholder="Select screenshot..."
-														type="file"
-														accept="image/jpg, image/png"
-														onChange={(event) =>
-															onChange(
-																event.target.files && event.target.files[0]
-															)
-														}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<div className="grid grid-cols-2 gap-2 mt-3">
-										<DialogClose className="col-span-1" asChild>
-											<Button
-												type="button"
-												className="w-full"
-												variant={"outline"}
-											>
-												Cancel
-											</Button>
-										</DialogClose>
-										<Button type="submit">Buy</Button>
-									</div>
-								</form>
-							</Form>
+							
 						</TabsContent>
-					</Tabs>
+					</Tabs> */}
 				</DialogContent>
 			</Dialog>
 			<AlertDialog open={buyingTicket || donating}>

@@ -69,45 +69,7 @@ const TicketsContainer = () => {
 												damping: 20,
 											}}
 										>
-											{/* <Dialog>
-												<DialogTrigger asChild>
-													<Button variant="default" className="w-full">
-														Buy
-													</Button>
-												</DialogTrigger>
-												<DialogContent>
-													<DialogHeader>
-														<DialogTitle>Options</DialogTitle>
-													</DialogHeader>
-													<div className="grid grid-cols-2 gap-4">
-														<PaymentDialog>
-															<div className="cursor-pointer active:scale-95 hover:scale-105 transition duration-300 flex flex-col justify-center items-center border-2 border-dashed p-4 rounded-xl">
-																<Image
-																	src={"/donate.svg"}
-																	alt="donate"
-																	width={80}
-																	height={80}
-																/>
-																<p className="font-medium mt-3">
-																	Direct Donate
-																</p>
-															</div>
-														</PaymentDialog>
-														<PaymentDialog>
-															<div className="cursor-pointer active:scale-95 hover:scale-105 transition duration-300 flex flex-col justify-center items-center border-2 border-dashed p-4 rounded-xl">
-																<Image
-																	src={"/ticket.svg"}
-																	alt="donate"
-																	width={80}
-																	height={80}
-																/>
-																<p className="font-medium mt-3">Buy Ticket</p>
-															</div>
-														</PaymentDialog>
-													</div>
-												</DialogContent>
-											</Dialog> */}
-											<PaymentDialog option={ticket.value}>
+											<PaymentDialog type="tickets" option={ticket.value}>
 												<Button variant="default" className="w-full">
 													Buy
 												</Button>

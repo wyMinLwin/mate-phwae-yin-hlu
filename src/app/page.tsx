@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import PaymentDialog from "@/components/PaymentDialog";
 import { motion } from "framer-motion";
+import { Alert } from "@/components/ui/alert";
 
 export default function Home() {
 	const { data, isLoading } = useGetAllData();
@@ -94,8 +95,15 @@ export default function Home() {
 						/>
 						<DialogTitle>Options</DialogTitle>
 					</DialogHeader>
-					<div className="font-medium text-center text-pretty">&ldquo; programming event ticket &rdquo; ဟု note တွင်မဖြစ်မနေရေးပေးပါရန်</div>
-					<div className="font-medium text-center text-pretty">&ldquo; Donation &rdquo; ဟု ထည့်မရေးပါနှင့်</div>
+					<Alert variant="destructive" className="bg-destructive/10">
+						<div className="font-medium text-center text-pretty">
+							&ldquo; programming event ticket &rdquo; ဟု note
+							တွင်မဖြစ်မနေရေးပေးပါရန်
+						</div>
+						<div className="font-medium text-center text-pretty">
+							&ldquo; Donation &rdquo; ဟု ထည့်မရေးပါနှင့်
+						</div>
+					</Alert>
 					<div className="grid grid-cols-2 gap-4">
 						<PaymentDialog type="donate">
 							<div className="cursor-pointer active:scale-95 hover:scale-105 transition duration-300 flex flex-col justify-center items-center border-2 border-dashed p-4 rounded-xl">

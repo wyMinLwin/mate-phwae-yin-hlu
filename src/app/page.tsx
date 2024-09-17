@@ -1,7 +1,7 @@
 "use client";
 import DateAndAddress from "@/components/DateAndAddress";
 import TicketsContainer from "@/components/TicketsContainer";
-import {useScrollTo} from 'framer-motion-scroll-to-hook'
+import { useScrollTo } from "framer-motion-scroll-to-hook";
 
 import { formatAmount } from "@/lib/utils";
 import Recents from "@/components/Recents";
@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
 	const { data, isLoading } = useGetAllData();
-	const scrollTo = useScrollTo()
+	const scrollTo = useScrollTo();
 
 	return (
 		<section className="w-full h-full p-3 flex flex-col items-center gap-5">
@@ -94,6 +94,8 @@ export default function Home() {
 						/>
 						<DialogTitle>Options</DialogTitle>
 					</DialogHeader>
+					<div className="font-medium text-center text-pretty">&ldquo; programming event ticket &rdquo; ဟု note တွင်မဖြစ်မနေရေးပေးပါရန်</div>
+					<div className="font-medium text-center text-pretty">&ldquo; Donation &rdquo; ဟု ထည့်မရေးပါနှင့်</div>
 					<div className="grid grid-cols-2 gap-4">
 						<PaymentDialog type="donate">
 							<div className="cursor-pointer active:scale-95 hover:scale-105 transition duration-300 flex flex-col justify-center items-center border-2 border-dashed p-4 rounded-xl">
@@ -107,7 +109,12 @@ export default function Home() {
 							</div>
 						</PaymentDialog>
 
-						<DialogClose className="col-span-1" onClick={() => scrollTo(document.querySelector('#tickets-container'))}>
+						<DialogClose
+							className="col-span-1"
+							onClick={() =>
+								scrollTo(document.querySelector("#tickets-container"))
+							}
+						>
 							<div className="cursor-pointer active:scale-95 hover:scale-105 transition duration-300 flex flex-col justify-center items-center border-2 border-dashed p-4 rounded-xl">
 								<Image
 									src={"/ticket.svg"}

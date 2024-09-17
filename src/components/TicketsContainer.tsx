@@ -24,23 +24,25 @@ const gradientsClass: { [key: string]: string } = {
 };
 
 const TicketsContainer = () => {
-	const {data, isLoading} = useGetAllData()
+	const { data, isLoading } = useGetAllData();
 
 	const remainingTickets = useMemo(() => {
 		if (!data?.tickets) return 0;
-		return 120 - data.tickets.length
-	},[data])
+		return 120 - data.tickets.length;
+	}, [data]);
 	return (
 		<div id="tickets-container">
 			<h3 className="text-center text-pretty text-xl mb-3 transition-all duration-300">
-				{
-					isLoading || !data ? "Wait a sec..." : remainingTickets === 0 ? "Unfortunately, All tickets are sold out." : "Hurry Up! Grab your tickets now!"
-				}
+				{isLoading || !data
+					? "Wait a sec..."
+					: remainingTickets === 0
+					? "Unfortunately, All tickets are sold out."
+					: "Hurry Up! Grab your tickets now!"}
 			</h3>
-			<h3 className="text-center text-pretty text-xl mb-3">
+			<h3 className="text-center text-pretty text-2xl mb-3 font-medium bg-gradient-to-r text-transparent from-[#00BFFF]  via-[#0048BD] to-[#0048BD] bg-clip-text">
 				{remainingTickets} Remaining Tickets
 			</h3>
-			
+
 			<h3 className="text-center text-pretty text-xl mb-3">
 				Tickets you can buy
 			</h3>
@@ -75,8 +77,8 @@ const TicketsContainer = () => {
 									<div className="relative group">
 										<motion.div
 											className="relative w-full z-20"
-											whileHover={{ scale: !remainingTickets ? 1 :1.05 }}
-											whileTap={{ scale: !remainingTickets ? 1 :0.95 }}
+											whileHover={{ scale: !remainingTickets ? 1 : 1.05 }}
+											whileTap={{ scale: !remainingTickets ? 1 : 0.95 }}
 											initial={{ y: 20, opacity: 0 }}
 											animate={{ y: 0, opacity: 1 }}
 											transition={{
@@ -86,7 +88,11 @@ const TicketsContainer = () => {
 											}}
 										>
 											<PaymentDialog type="tickets" option={ticket.value}>
-												<Button disabled={!remainingTickets} variant="default" className="w-full">
+												<Button
+													disabled={!remainingTickets}
+													variant="default"
+													className="w-full"
+												>
 													Buy
 												</Button>
 											</PaymentDialog>

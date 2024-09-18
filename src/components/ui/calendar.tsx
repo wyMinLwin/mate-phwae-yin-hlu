@@ -14,6 +14,7 @@ function Calendar({
 }: CalendarProps) {
   return (
     <DayPicker
+      today={new Date()}
       showOutsideDays={showOutsideDays}
       className={cn("p-3  rounded-xl", className)}
       classNames={{

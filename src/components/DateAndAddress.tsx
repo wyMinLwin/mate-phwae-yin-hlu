@@ -56,7 +56,7 @@ const DateAndAddress = () => {
 					<div className="w-3/5">
 						<h4 className="text-pretty text-lg font-medium">Place</h4>
 						<div className="flex flex-col items-start gap-1 ">
-							<h5>?</h5>
+							<h5>Central International School (Parami Campus)</h5>
 						</div>
 					</div>
 				</motion.div>

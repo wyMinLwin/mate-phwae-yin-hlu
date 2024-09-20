@@ -1,5 +1,6 @@
 export type Ticket = {
 	email: string;
+	name: string;
 	phone: string;
 	screenshot: string;
 	ticket_type: string;

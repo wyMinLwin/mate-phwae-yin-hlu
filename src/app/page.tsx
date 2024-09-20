@@ -97,7 +97,7 @@ export default function Home() {
 					</DialogHeader>
 					<Alert variant="destructive" className="bg-destructive/10">
 						<div className="font-medium text-center text-pretty">
-							&ldquo; programming event ticket &rdquo; ဟု note
+							&ldquo; programming class fee &rdquo; ဟု note
 							တွင်မဖြစ်မနေရေးပေးပါရန်
 						</div>
 						<div className="font-medium text-center text-pretty">
@@ -134,6 +134,11 @@ export default function Home() {
 							</div>
 						</DialogClose>
 					</div>
+					<Alert variant="default" className="bg-orange-400/10 border-orange-400">
+						<div className="font-medium text-center text-pretty text-orange-400">
+							Direct Donate သည် ပွဲမလာဖြစ်သူများအတွက်သာ
+						</div>
+					</Alert>
 					<DialogClose asChild className="w-fit mx-auto tracking-wider">
 						<Button variant="default" className="w-[180px]">
 							Later

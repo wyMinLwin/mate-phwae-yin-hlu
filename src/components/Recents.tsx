@@ -38,9 +38,9 @@ const Recents = () => {
 									transition={{ duration: 0.5 }}
 									className="absolute w-full text-center text-transparent bg-gradient-to-r from-[#00BFFF]  via-[#0048BD] to-[#0048BD] bg-clip-text"
 								>
-									{recent.hasOwnProperty("ticket_type") ? (
+									{(recent as Ticket).ticket_type ? (
 										<span>
-											{recent.email} bought a ticket for{" "}
+											{(recent as Ticket).name} bought a ticket for{" "}
 											{formatAmount(
 												parseFloat(
 													tickets.find(
@@ -52,7 +52,7 @@ const Recents = () => {
 										</span>
 									) : (
 										<span>
-											{recent.email} donated{" "}
+											{(recent as Donation).email} donated{" "}
 											{formatAmount(parseFloat((recent as Donation).amount))}{" "}
 											MMK
 										</span>

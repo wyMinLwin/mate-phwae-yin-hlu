@@ -31,6 +31,10 @@ import { AlertDialog, AlertDialogContent } from "./ui/alert-dialog";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
 const donateFormSchema = z.object({
+	name: z.string({ required_error: "Name Required" }).regex(/^[a-zA-Z\s]*$/, {
+		message: "Name can only contain letters and spaces",
+	}),
+
 	email: z.string({ required_error: "Email Required" }).email(),
 	phone: z
 		.string({ required_error: "Phone Required" })
@@ -47,6 +51,10 @@ const donateFormSchema = z.object({
 });
 
 const buyTicketFormSchema = z.object({
+	name: z.string({ required_error: "Name Required" }).regex(/^[a-zA-Z\s]*$/, {
+		message: "Name can only contain letters and spaces",
+	}),
+
 	email: z.string({ required_error: "Email Required" }).email(),
 	phone: z
 		.string({ required_error: "Phone Required" })
@@ -93,6 +101,7 @@ const PaymentDialog = ({
 	const donateForm = useForm<z.infer<typeof donateFormSchema>>({
 		resolver: zodResolver(donateFormSchema),
 		defaultValues: {
+			name: "",
 			email: "",
 			phone: "",
 			amount: "",
@@ -101,6 +110,7 @@ const PaymentDialog = ({
 	const buyTicketForm = useForm<z.infer<typeof buyTicketFormSchema>>({
 		resolver: zodResolver(buyTicketFormSchema),
 		defaultValues: {
+			name: "",
 			email: "",
 			phone: "",
 			ticket_type: option,
@@ -109,6 +119,7 @@ const PaymentDialog = ({
 
 	function onDoate(values: z.infer<typeof donateFormSchema>) {
 		const formData = new FormData();
+		formData.append("name", values.name);
 		formData.append("email", values.email);
 		formData.append("phone", values.phone);
 		formData.append("amount", values.amount.toString());
@@ -133,6 +144,7 @@ const PaymentDialog = ({
 
 	function onBuyTicket(values: z.infer<typeof buyTicketFormSchema>) {
 		const formData = new FormData();
+		formData.append("name", values.name);
 		formData.append("email", values.email);
 		formData.append("phone", values.phone);
 		formData.append("ticket_type", values.ticket_type);
@@ -168,6 +180,19 @@ const PaymentDialog = ({
 					{type === "donate" ? (
 						<Form {...donateForm}>
 							<form onSubmit={donateForm.handleSubmit(onDoate)}>
+								<FormField
+									control={donateForm.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter your name..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<FormField
 									control={donateForm.control}
 									name="email"
@@ -249,6 +274,19 @@ const PaymentDialog = ({
 					) : (
 						<Form {...buyTicketForm}>
 							<form onSubmit={buyTicketForm.handleSubmit(onBuyTicket)}>
+								<FormField
+									control={buyTicketForm.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter your name..." {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 								<FormField
 									control={buyTicketForm.control}
 									name="email"

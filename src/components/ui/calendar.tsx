@@ -6,15 +6,21 @@ import { DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
+
+
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const [today,setToday] = React.useState(new Date())
+  React.useEffect(() => {
+    setToday(new Date())
+  },[])
   return (
     <DayPicker
-      today={new Date()}
+      today={today}
       showOutsideDays={showOutsideDays}
       className={cn("p-3  rounded-xl", className)}
       classNames={{

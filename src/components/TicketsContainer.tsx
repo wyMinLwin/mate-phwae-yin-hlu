@@ -20,7 +20,7 @@ const gradientsClass: { [key: string]: string } = {
 	"1": "",
 	"2": "",
 	"3": "from-[#2d388a] to-[#00aeef]",
-	"4": "from-[#00e5ff] to-[#1500ff]",
+	"4": "from-[#00e5ff] to-[#1200ff]",
 };
 
 const TicketsContainer = () => {
@@ -28,7 +28,7 @@ const TicketsContainer = () => {
 
 	const remainingTickets = useMemo(() => {
 		if (!data?.tickets) return 0;
-		return 150 - data.tickets.length;
+		return 120 - data.tickets.length;
 	}, [data]);
 	return (
 		<div id="tickets-container">

@@ -96,12 +96,13 @@ export default function Home() {
 						<DialogTitle>Options</DialogTitle>
 					</DialogHeader>
 					<Alert variant="destructive" className="bg-destructive/10">
-						<div className="font-medium text-center text-pretty">
-							&ldquo; programming class fee &rdquo; ဟု note
-							တွင်မဖြစ်မနေရေးပေးပါရန်
+						<div className="font-medium text-center text-pretty leading-relaxed">
+							&ldquo; programming class fee &rdquo; လို့ note မှာရေးပေးကြဖို့
+							မေတ္တာရပ်ခံပါတယ်ဗျ။ Account risk ရှိတာမို့ &ldquo; Donation &rdquo;
+							လို့ထည့်မရေးပါနဲ့ဗျ
 						</div>
 						<div className="font-medium text-center text-pretty">
-							&ldquo; Donation &rdquo; ဟု ထည့်မရေးပါနှင့်
+							
 						</div>
 					</Alert>
 					<div className="grid grid-cols-2 gap-4">
@@ -134,9 +135,12 @@ export default function Home() {
 							</div>
 						</DialogClose>
 					</div>
-					<Alert variant="default" className="bg-orange-400/10 border-orange-400">
-						<div className="font-medium text-center text-pretty text-orange-400">
-							Direct Donate သည် ပွဲမလာဖြစ်သူများအတွက်သာ
+					<Alert
+						variant="default"
+						className="bg-orange-400/10 border-orange-400"
+					>
+						<div className="font-medium text-center text-pretty text-orange-400 leading-relaxed">
+						&ldquo;Direct Donate&rdquo; ကတော့ ပွဲမလာဖြစ်တဲ့သူတွေအတွက်ပါဗျ
 						</div>
 					</Alert>
 					<DialogClose asChild className="w-fit mx-auto tracking-wider">

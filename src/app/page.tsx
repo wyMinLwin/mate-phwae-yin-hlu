@@ -139,7 +139,7 @@ export default function Home() {
 						variant="default"
 						className="bg-orange-400/10 border-orange-400"
 					>
-						<div className="font-medium text-center text-pretty text-orange-400 leading-relaxed">
+						<div className="font-medium text-center text-pretty text-orange-400 leading-relaxed`">
 						&ldquo;Direct Donate&rdquo; ကတော့ ပွဲမလာဖြစ်တဲ့သူတွေအတွက်ပါဗျ
 						</div>
 					</Alert>

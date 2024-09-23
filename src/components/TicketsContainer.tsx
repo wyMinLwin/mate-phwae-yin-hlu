@@ -24,7 +24,7 @@ const gradientsClass: { [key: string]: string } = {
 };
 
 const TicketsContainer = () => {
-	const { data, isLoading } = useGetAllData();
+	const { data } = useGetAllData();
 
 	const remainingTickets = useMemo(() => {
 		if (!data?.tickets) return 0;
@@ -32,15 +32,16 @@ const TicketsContainer = () => {
 	}, [data]);
 	return (
 		<div id="tickets-container">
-			<h3 className="text-center text-pretty text-xl mb-3 transition-all duration-300">
+			{/* <h3 className="text-center text-pretty text-xl mb-3 transition-all duration-300">
 				{isLoading || !data
 					? "Wait a sec..."
 					: remainingTickets === 0
 					? "Unfortunately, All tickets are sold out."
 					: "Hurry Up! Grab your tickets now!"}
-			</h3>
+			</h3> */}
 			<h3 className="text-center text-pretty text-2xl mb-3 font-medium bg-gradient-to-r text-transparent from-[#00BFFF]  via-[#0048BD] to-[#0048BD] bg-clip-text">
-				{remainingTickets} Remaining Tickets
+				{/* {remainingTickets} Remaining Tickets */}
+				The Seat is Limited, Grab Yours Know
 			</h3>
 
 			<h3 className="text-center text-pretty text-xl mb-3">

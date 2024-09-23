@@ -46,23 +46,33 @@ const donateFormSchema = z.object({
 	),
 });
 
-const buyTicketFormSchema = z.object({
-	name: z.string({ required_error: "Name Required" }).regex(/^[a-zA-Z\s]*$/, {
-		message: "Name can only contain letters and spaces",
-	}),
+const buyTicketFormSchema = z
+	.object({
+		name: z
+			.string({ required_error: "Name Required" })
+			.min(1, {
+				message: "Name Required",
+			})
+			.regex(/^[a-zA-Z\s]*$/, {
+				message: "Name can only contain letters and spaces",
+			}),
 
-	email: z.string({ required_error: "Email Required" }).email(),
-	phone: z
-		.string({ required_error: "Phone Required" })
-		.regex(/^\+?\d{10,}$/, { message: "Enter a valid phone number" }),
-	ticket_type: z.string(),
-	screenshot: z.instanceof(File, { message: "Screenshot Required" }).refine(
-		(file) => {
-			return file;
-		},
-		{ message: "Screenshot Required" }
-	),
-});
+		email: z.string({ required_error: "Email Required" }).email(),
+		phone: z
+			.string({ required_error: "Phone Required" })
+			.regex(/^\+?\d{10,}$/, { message: "Enter a valid phone number" }),
+		ticket_type: z.string(),
+		screenshot: z.instanceof(File).optional(),
+		cupon_code: z.string().optional(),
+	})
+	.refine((data) => data.screenshot || data.cupon_code, {
+		message: "Either Screenshot or Cupon Code is required",
+		path: ["cupon_code"],
+	})
+	.refine((data) => data.screenshot || data.cupon_code, {
+		message: "Either Screenshot or Cupon Code is required",
+		path: ["screenshot"],
+	});
 
 const PaymentDialog = ({
 	children,
@@ -142,7 +152,10 @@ const PaymentDialog = ({
 		formData.append("email", values.email);
 		formData.append("phone", values.phone);
 		formData.append("ticket_type", values.ticket_type);
-		formData.append("screenshot", values.screenshot);
+		formData.append("cupon_code", values.cupon_code || "");
+		if (values.screenshot) {
+			formData.append("screenshot", values.screenshot);
+		}
 		buyTicketAPI(formData, {
 			onSuccess: () => {
 				buyTicketForm.reset();
@@ -165,7 +178,10 @@ const PaymentDialog = ({
 		<>
 			<Dialog>
 				<DialogTrigger asChild>{children}</DialogTrigger>
-				<DialogContent aria-describedby="payment dialog ">
+				<DialogContent
+					aria-describedby="payment dialog "
+					className="max-h-[95svh] overflow-y-auto"
+				>
 					<DialogClose ref={hiddenBtnRef} className="hidden"></DialogClose>
 					<DialogHeader>
 						<DialogTitle className="text-pretty text-xl">Payment</DialogTitle>
@@ -330,6 +346,18 @@ const PaymentDialog = ({
 														)
 													}
 												/>
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={buyTicketForm.control}
+									name="cupon_code"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Cupon Code</FormLabel>
+											<FormControl>
+												<Input placeholder="Enter cupon..." {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>

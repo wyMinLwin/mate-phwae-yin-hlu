@@ -350,6 +350,11 @@ const PaymentDialog = ({
 										</FormItem>
 									)}
 								/>
+								<div className="flex justify-center items-center gap-2 mt-2">
+									<div className="h-[1px] grow bg-gray-400"></div>
+									<div className="text-gray-400 font-medium">OR</div>
+									<div className="h-[1px] grow bg-gray-400"></div>
+								</div>
 								<FormField
 									control={buyTicketForm.control}
 									name="cupon_code"

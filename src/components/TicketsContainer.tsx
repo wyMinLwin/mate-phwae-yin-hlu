@@ -41,7 +41,7 @@ const TicketsContainer = () => {
 			</h3> */}
 			<h3 className="text-center text-pretty text-2xl mb-3 font-medium bg-gradient-to-r text-transparent from-[#00BFFF]  via-[#0048BD] to-[#0048BD] bg-clip-text">
 				{/* {remainingTickets} Remaining Tickets */}
-				The Seat is Limited, Grab Yours Know
+				The Seat is Limited, Grab Yours Now
 			</h3>
 
 			<h3 className="text-center text-pretty text-xl mb-3">

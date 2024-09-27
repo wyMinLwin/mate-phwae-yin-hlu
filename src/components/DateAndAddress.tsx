@@ -28,11 +28,11 @@ const DateAndAddress = () => {
 					transition={transition}
 					viewport={{ once: true }}
 				>
-					<Calendar selected={[new Date("2024-09-29")]} />
-					<div className="mt-2 w-3/5  flex justify-start items-center gap-2">
+					<Calendar month={new Date("2024-10-06")} selected={[new Date("2024-10-06")]} />
+					{/* <div className="mt-2 w-3/5  flex justify-start items-center gap-2">
 						<div className="w-3 h-3 rounded-full border-[1px] border-primary"></div>
 						<div>Today</div>
-					</div>
+					</div> */}
 					<div className="w-3/5 flex justify-start items-center gap-2">
 						<div className="w-3 h-3 rounded-full bg-primary border-[1px] border-primary"></div>
 						<div>Event Date</div>

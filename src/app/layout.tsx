@@ -24,9 +24,10 @@ export default function RootLayout({
 			<body
 				className={`w-screen min-h-svh relative flex justify-center overflow-x-hidden bg-[#f8f9fe] text-dark ${fredoka.className}`}
 			>
+				
 				<Toaster />
 				<Wrapper>
-					<main className="w-full h-fit sm:w-[640px] relative z-10">
+					<main className="w-full h-fit sm:w-[640px] relative z-10 pt-16 sm:pt-10">
 						{children}
 					</main>
 				</Wrapper>

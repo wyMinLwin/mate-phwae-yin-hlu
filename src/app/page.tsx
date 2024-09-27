@@ -19,13 +19,15 @@ import { Button } from "@/components/ui/button";
 import PaymentDialog from "@/components/PaymentDialog";
 import { motion } from "framer-motion";
 import { Alert } from "@/components/ui/alert";
+import Banner from "@/components/Banner";
 
 export default function Home() {
 	const { data, isLoading } = useGetAllData();
 	const scrollTo = useScrollTo();
 
 	return (
-		<section className="w-full h-full p-3 flex flex-col items-center gap-5">
+		<section className="w-full h-full p-3 flex flex-col items-center gap-5 relative">
+			<Banner />
 			<Image
 				src="/event_logo.png"
 				priority
